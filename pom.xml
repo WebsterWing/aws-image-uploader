@@ -55,12 +55,21 @@
 	                    <phase>package</phase>
 	                    <configuration>
 	                        <tasks>
+	                        <!--  
 	                            <unzip src="${project.build.directory}/${project.build.finalName}.jar" dest="${project.build.directory}/${project.build.finalName}" />
 	                            <copy todir="${project.build.directory}/${project.build.finalName}/" overwrite="false">
 	                                <fileset dir="./" includes=".ebextensions/**"/>
 	                                <fileset dir="./" includes="Procfile"/>
 	                            </copy>
 	                            <zip compress="false" destfile="${project.build.directory}/${project.build.finalName}.jar" basedir="${project.build.directory}/${project.build.finalName}"/>
+	                        -->
+	                        	<mkdir dir="${project.build.directory}/ebSourceBundle/"/>
+	                        	<copy todir="${project.build.directory}/ebSourceBundle/" overwrite="false">
+	                        		<fileset dir="./" includes=".ebextensions/**"/>
+	                                <fileset dir="./" includes="Procfile"/>
+	                                <fileset dir="./target" includes="${project.build.finalName}.jar" />
+	                        	</copy>
+	                        	<zip compress="false" destfile="${project.build.directory}/ebSourceBundle.zip" basedir="${project.build.directory}/ebSourceBundle"/>
 	                        </tasks>
 	                    </configuration>
 	                    <goals>
