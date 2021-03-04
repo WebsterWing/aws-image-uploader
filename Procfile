@@ -1,1 +1,1 @@
-web: java -jar ./aws-image-upload-0.0.1-SNAPSHOT.jar
+web: java -jar ./aws-image-upload-0.0.1-SNAPSHOT.jar --spring.servlet.multipart.max-file-size=50MB --spring.servlet.multipart.max-request-size=50MB
