@@ -48,7 +48,7 @@
 			<plugin>
 	            <groupId>org.apache.maven.plugins</groupId>
 	            <artifactId>maven-antrun-plugin</artifactId>
-	            <version>1.6</version>
+	            <version>1.8</version>
 	            <executions>
 	                <execution>
 	                    <id>prepare</id>
@@ -58,6 +58,7 @@
 	                            <unzip src="${project.build.directory}/${project.build.finalName}.jar" dest="${project.build.directory}/${project.build.finalName}" />
 	                            <copy todir="${project.build.directory}/${project.build.finalName}/" overwrite="false">
 	                                <fileset dir="./" includes=".ebextensions/**"/>
+	                                <fileset dir="./" includes="Procfile"/>
 	                            </copy>
 	                            <zip compress="false" destfile="${project.build.directory}/${project.build.finalName}.jar" basedir="${project.build.directory}/${project.build.finalName}"/>
 	                        </tasks>
