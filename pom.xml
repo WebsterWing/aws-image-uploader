@@ -65,7 +65,7 @@
 	                        -->
 	                        	<mkdir dir="${project.build.directory}/ebSourceBundle/"/>
 	                        	<copy todir="${project.build.directory}/ebSourceBundle/" overwrite="false">
-	                        		<fileset dir="./" includes=".ebextensions/**"/>
+	                        		<fileset dir="./" includes=".platform/**"/>
 	                                <fileset dir="./" includes="Procfile"/>
 	                                <fileset dir="./target" includes="${project.build.finalName}.jar" />
 	                        	</copy>
