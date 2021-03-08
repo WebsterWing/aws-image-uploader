@@ -31,6 +31,9 @@ public class UserProfileService {
 	@Autowired
 	private FileStore fileStore;
 	
+	@Autowired
+	private UserProfileChangeTracker userProfileChangeTracker;
+	
 	private final List<String> imageMimeTypes = Arrays.asList(
 			IMAGE_JPEG.getMimeType(),
 			IMAGE_PNG.getMimeType(),
@@ -38,6 +41,11 @@ public class UserProfileService {
 	
 	public List<UserProfile> getUserProfiles() {
 		return userProfileDataAccessService.getUserProfiles();
+	}
+	
+	public List<UserProfile> changedProfiles() {
+		List<UUID> ids = userProfileChangeTracker.GetChangedProfiles();
+		return userProfileDataAccessService.getUserProfilesByIdList(ids);
 	}
 
 	public UserProfile uploadUserProfileImage(UUID userProfileId, MultipartFile file) {
@@ -60,6 +68,7 @@ public class UserProfileService {
 		String link = String.format("http://%s.s3-website.%s.amazonaws.com/%s/%s", 
 				BucketName.PROFILE_IMAGE, BucketName.PROFILE_IMAGE_REGION, user.getUuid(), fileName);
 		user.setUserProfileImageLink(link);
+		userProfileChangeTracker.NotifyUpdate(user);
 		return user;
 	}
 

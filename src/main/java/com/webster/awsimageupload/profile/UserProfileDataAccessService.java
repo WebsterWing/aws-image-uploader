@@ -21,4 +21,8 @@ public class UserProfileDataAccessService {
 	public Optional<UserProfile> getUserById(UUID id) {
 		return userProfileDataStore.getUserById(id);
 	}
+	
+	public List<UserProfile> getUserProfilesByIdList(List<UUID> ids) {
+		return userProfileDataStore.getUserProfilesByIdList(ids);
+	}
 }

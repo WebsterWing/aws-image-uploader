@@ -43,4 +43,9 @@ public class UserProfileController {
 	public byte[] downloadUserProfileImage(@PathVariable("userProfileId") UUID userProfileId) {
 		return userProfileService.downloadUserProfileImage(userProfileId);
 	}
+	
+	@GetMapping(path="changed/5m")
+	public List<UserProfile> getUserProfilesChangedPast5Minutes() {
+		return userProfileService.changedProfiles();
+	}
 }
